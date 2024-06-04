@@ -139,30 +139,40 @@ EOF
 ```
 
 **Start the node**
-Copy
+```
 sudo systemctl daemon-reload && \
 sudo systemctl enable 0gd && \
 sudo systemctl restart 0gd && \
 sudo journalctl -u 0gd -f -o cat
+```
 P.S. Consider downloading snapshot or using state-sync for the quick sync.
 
-Create a wallet for your validator
-Copy
+**Create a wallet for your validator**
+```
 0gchaind keys add $WALLET_NAME
-Extract the HEX address to request some tokens from the faucet
-Copy
+```
+
+**Extract the HEX address to request some tokens from the faucet**
+```
 echo "0x$(0gchaind debug addr $(0gchaind keys show $WALLET_NAME -a) | grep hex | awk '{print $3}')"
-Request tokens from the faucet
-Logo
-Faucet - 0G Testnet
-Checking Synchronization
+```
 
-Copy
+**Request tokens from the faucet**
+```
+https://faucet.0g.ai/
+```
+
+**Checking Synchronization**
+```
 0gchaind status 2>&1 | jq .sync_info
-Check wallet balance
+```
 
-Copy
-0gchaind q bank balances $(0gchaind keys show $WALLET_NAME -a) 
-Check node status
-Copy
+**Check wallet balance**
+```
+0gchaind q bank balances $(0gchaind keys show $WALLET_NAME -a)
+```
+
+**Check node status**
+```
 0gchaind status | jq
+```
